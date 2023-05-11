@@ -10,6 +10,11 @@ const router = jsonServer.router('./db.json')
 const admindb = JSON.parse(fs.readFileSync('./admin.json', 'UTF-8'));
 const alunodb = JSON.parse(fs.readFileSync('./alunos.json', 'UTF-8'));
 
+const cors = require('cors');
+
+server.use(cors({
+  origin: '*'
+}))
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
 server.use(jsonServer.defaults());
