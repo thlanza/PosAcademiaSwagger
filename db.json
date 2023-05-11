@@ -1,0 +1,13 @@
+{
+  "modalidades": [
+    {
+      "nomeModalidade": "Musculação Pesada",
+      "horario": "18:30",
+      "dias": [
+        "Quarta",
+        "Sexta"
+      ],
+      "id": 1
+    }
+  ]
+}

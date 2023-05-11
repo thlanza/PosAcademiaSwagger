@@ -1,0 +1,493 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API da Academia Lanza",
+        "description": "Essa API tem como objetivo possibilitar o funcionamento do site Academia Lanza, tanto no seu módulo Aluno como no seu módulo Administrador.",
+        "termsOfService": "http://localhost:5000/terms",
+        "contact": {
+            "email": "thlanza@hotmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5000/",
+            "description": "API de teste"
+        }
+    ],
+    "paths": {
+        "/admin/auth/registrar": {
+            "post": {
+                "summary": "Cadastro de usuário administrador",
+                "description": "Essa rota será responsável por cadastrar um novo usuário administrador",
+                "tags": ["Admin"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdminCadastro"
+                            },
+                            "examples": {
+                                "admin": {
+                                    "value": {
+                                        "primeiroNome": "Verônica",
+                                        "sobrenome": "Guimarães",
+                                        "email": "veronicacorreaguimaraes@gmail.com",
+                                        "password": "academialanza3",
+                                        "fotoDePerfil": "https://scontent.fbhz1-2.fna.fbcdn.net/v/t1.6435-9/87788789_3004693229562347_521159599508684800_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=0debeb&_nc_eui2=AeF49IqIHy6mMxqI4vDjjVF_082ogvtWE7PTzaiC-1YTsym7UWy5u67ZzH_OIRMp12I&_nc_ohc=lNXjkIDTuqQAX9fkzd5&tn=zyNfPh3SQJPxGL6i&_nc_ht=scontent.fbhz1-2.fna&oh=00_AfDwgUVLbhzOs2b9pEhj8_tYu9u8VgZjpbWNG-0Mqd1Syw&oe=63F90924"                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Não autorizado"
+                    },
+                    "400": {
+                        "description": "Usuário já existe"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                        "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/auth/login": {
+            "post": {
+                "summary": "Login de usuário administrador",
+                "description": "Essa rota será responsável por logar um usuário administrador",
+                "tags": ["Admin"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserLogin"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "id": "2",
+                                        "email": "thlanza@hotmail.com",
+                                        "password": "academialanza"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Não autorizado"
+                    },
+                    "400": {
+                        "description": "Usuário já existe"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                        "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno/auth/registrar": {
+            "post": {
+                "summary": "Matrícula de aluno",
+                "description": "Essa rota será responsável por matricular o aluno",
+                "tags": ["Aluno"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AlunoCadastro"
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "primeiroNome": "Verônica",
+                                        "sobrenome": "Guimarães",
+                                        "email": "veronicacorreaguimaraes@gmail.com",
+                                        "password": "academialanza3",
+                                        "fotoDePerfil": "https://scontent.fbhz1-2.fna.fbcdn.net/v/t1.6435-9/87788789_3004693229562347_521159599508684800_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=0debeb&_nc_eui2=AeF49IqIHy6mMxqI4vDjjVF_082ogvtWE7PTzaiC-1YTsym7UWy5u67ZzH_OIRMp12I&_nc_ohc=lNXjkIDTuqQAX9fkzd5&tn=zyNfPh3SQJPxGL6i&_nc_ht=scontent.fbhz1-2.fna&oh=00_AfDwgUVLbhzOs2b9pEhj8_tYu9u8VgZjpbWNG-0Mqd1Syw&oe=63F90924",
+                                        "modalidade": "Musculação",
+                                        "inadimplente": false,
+                                        "mesesInadimplente": 0                
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Não autorizado"
+                    },
+                    "400": {
+                        "description": "Usuário já existe"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                        "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno/auth/admin/{id}": {
+            "delete": {
+                "summary": "Deletar aluno",
+                "description": "Essa rota será responsável por deletar o aluno do banco de dados",
+                "tags": ["Aluno"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id do aluno",
+                    "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno/auth/login": {
+        "post": {
+            "summary": "Login de aluno",
+            "description": "Essa rota será responsável por logar um usuário aluno",
+            "tags": ["Aluno"],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/UserLogin"
+                        },
+                        "examples": {
+                            "aluno": {
+                                "value": {
+                                    "email": "thlanza@hotmail.com",
+                                    "password": "academialanza"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "401": {
+                    "description": "Não autorizado"
+                },
+                "400": {
+                    "description": "Usuário já existe"
+                },
+                "200": {
+                    "description": "OK",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                    "$ref": "#/components/schemas/UserResponse"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+        "/modalidades": {
+            "get": {
+                "description": "Recuperando todas as modalidades",
+                "summary": "Esta rota recupera todas as modalidades armazenadas",
+                "tags": ["Modalidade"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Modalidade"
+                                    }                       
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Criando uma modalidade",
+                "summary": "Esta rota cria uma modalidade e a armazena.",
+                "tags": ["Modalidade"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Modalidade"                      
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Modalidade"
+                            },
+                            "examples": {
+                                "aluno": {
+                                    "value": {
+                                        "nomeModalidade": "Natação",
+                                        "horario": "10:30",
+                                        "dias": ["Terça", "Quinta"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/modalidades/{id}": {
+            "get": {
+                "description": "Busca de uma modalidade pelo id",
+                "summary": "Busca de uma modalidade pelo id",
+                "tags": ["Modalidade"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Nome do produto pelo id",
+                    "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Modalidade"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Alterar uma modalidade pelo id",
+                "summary": "Alterar uma modalidade pelo id",
+                "tags": ["Modalidade"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Nome do produto pelo id",
+                    "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Modalidade"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {
+                                        "nomeModalidade": "Musculação Pesada",
+                                        "horario": "18:30",
+                                        "dias": ["Quarta", "Sexta"]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Modalidade"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Deletar uma modalidade pelo id",
+                "summary": "Deletar uma modalidade pelo id",
+                "tags": ["Modalidade"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Nome do produto pelo id",
+                    "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Modalidade": {
+                "type": "object",
+                "properties": {
+                    "nomeModalidade": {
+                        "type": "string"
+                    },
+                    "horario": {
+                        "type": "string"
+                    },
+                    "dias": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "dataDeCriacao": {
+                        "type": "string",
+                        "format": "date"
+                    }
+                }
+            },
+            "AdminCadastro": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "primeiroNome": {
+                        "type": "string"
+                    },
+                    "sobrenome": {
+                        "type": "string"
+                    },
+                    "fotoDePerfil": {
+                        "type": "string"
+                    }
+                }   
+            },
+            "AlunoCadastro": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "primeiroNome": {
+                        "type": "string"
+                    },
+                    "sobrenome": {
+                        "type": "string"
+                    },
+                    "fotoDePerfil": {
+                        "type": "string"
+                    },
+                    "modalidade":{
+                        "type": "string"
+                    },
+                    "inadimplente": {
+                        "type": "boolean"
+                    },
+                    "mesesInadimplente": {
+                        "type": "number"
+                    }
+                }  
+            },
+            "UserLogin": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password"
+                    }
+                }
+            },
+            
+            "UserResponse": {
+                "type": "object",
+                "properties": {
+                    "access_token": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
