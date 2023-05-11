@@ -3,7 +3,6 @@
     "info": {
         "title": "API da Academia Lanza",
         "description": "Essa API tem como objetivo possibilitar o funcionamento do site Academia Lanza, tanto no seu módulo Aluno como no seu módulo Administrador.",
-        "termsOfService": "http://localhost:5000/terms",
         "contact": {
             "email": "thlanza@hotmail.com"
         },
@@ -11,7 +10,7 @@
     },
     "servers": [
         {
-            "url": "http://localhost:5000/",
+            "url": "https://backend-mockado-swagger.onrender.com/",
             "description": "API de teste"
         }
     ],
