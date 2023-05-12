@@ -7,6 +7,8 @@ const swaggerDocs = require('./swagger.json');
 
 const server = jsonServer.create()
 const router = jsonServer.router('./db.json')
+// const routerComprovantes = jsonServer.router('./comprovantes.json')
+
 const admindb = JSON.parse(fs.readFileSync('./admin.json', 'UTF-8'));
 const alunodb = JSON.parse(fs.readFileSync('./alunos.json', 'UTF-8'));
 
@@ -230,6 +232,7 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
 })
 
 server.use(router)
+// server.use(routerComprovantes)
 
 server.listen(5000, () => {
   console.log('Servidor Mock')

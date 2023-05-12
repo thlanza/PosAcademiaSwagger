@@ -1,3 +1,4 @@
+
 {
   "modalidades": [
     {
@@ -9,5 +10,33 @@
       ],
       "id": 1
     }
-  ]
+  ],
+  "comprovantes": [
+    {
+        "idAluno": 1,
+        "urlFoto": "http://servidor/imagem1.jpg",
+        "mes": 2,
+        "ano": 2023
+    },
+    {
+        "idAluno": 2,
+        "urlFoto": "http://servidor/imagem2.jpg",
+        "mes": 3,
+        "ano": 2023
+    },
+    {
+        "idAluno": 1,
+        "urlFoto": "http://servidor/imagem3.jpg",
+        "mes": 4,
+        "ano": 2023
+    },
+    {
+        "idAluno": 1,
+        "urlFoto": "http://servidor/imagem4.jpg",
+        "mes": 5,
+        "ano": 2023
+    }
+]
+  
 }
+

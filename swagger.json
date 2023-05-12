@@ -10,7 +10,7 @@
     },
     "servers": [
         {
-            "url": "https://backend-mockado-swagger.onrender.com/",
+            "url": "http://localhost:5000",
             "description": "API de teste"
         }
     ],
@@ -385,6 +385,7 @@
             }
         }
     },
+
     "components": {
         "schemas": {
             "Modalidade": {
@@ -405,6 +406,23 @@
                     "dataDeCriacao": {
                         "type": "string",
                         "format": "date"
+                    }
+                }
+            },
+            "Comprovante": {
+                "type": "object",
+                "properties": {
+                    "idAluno": {
+                        "type": "string"
+                    },
+                    "urlFoto": {
+                        "type": "string"
+                    },
+                    "mes": {
+                        "type": "string"
+                    },
+                    "ano": {
+                        "type": "string"
                     }
                 }
             },
