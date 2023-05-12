@@ -1,40 +1,81 @@
 
 {
+  "admin": [
+    {
+      "id": 1,
+      "email": "thlanza@hotmail.com",
+      "password": "academialanza",
+      "primeiroNome": "Thiago",
+      "sobrenome": "Lanza",
+      "fotoDePerfil": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
+  }
+],
+"alunos": [
+  
+    {
+        "id": 1,
+        "email": "thlanza@hotmail.com",
+        "password": "academialanza",
+        "primeiroNome": "Thiago",
+        "sobrenome": "Lanza",
+        "fotoDePerfil": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
+        "modalidade": "Musculação",
+        "inadimplente": false,
+        "mesesInadimplente": 0,
+        "dataDeInscricao": "01/01/2023"
+    },
+    {
+        "id": 2,
+        "primeiroNome": "Dias",
+        "sobrenome": "Gomes",
+        "senha": "secret1",
+        "fotoDePerfil": "fotoGomes.jpg",
+        "email": "gomes@gmail.com",
+        "modalidadeId": 1,
+        "presencaId": 1,
+        "inadimplente": false,
+        "mesesInadimplente": 0,
+        "dataDeInscricao": "02/02/2023"
+    }
+],
   "modalidades": [
     {
-      "nomeModalidade": "Musculação Pesada",
-      "horario": "18:30",
-      "dias": [
-        "Quarta",
-        "Sexta"
-      ],
-      "id": 1
+        "id": 1,
+        "nomeModalidade": "Natação 1",
+        "horario": "09:30",
+        "dias": ["Segunda", "Quarta"],
+        "dataDeCriacao": "03/02/2023"
+    },
+    {
+        "id": 1,
+        "nomeModalidade": "Yoga 1",
+        "horario": "10:30",
+        "dias": ["Terça", "Quarta"],
+        "dataDeCriacao": "03/02/2023"   
     }
-  ],
-  "comprovantes": [
+],
+"comprovantes": [
     {
-        "idAluno": 1,
-        "urlFoto": "http://servidor/imagem1.jpg",
+        "id": 1,
+        "alunoId": 1,
+        "urlFoto": "http://servidor.image.jpg",
         "mes": 2,
-        "ano": 2023
+        "ano": 2023   
     },
     {
-        "idAluno": 2,
-        "urlFoto": "http://servidor/imagem2.jpg",
+        "id": 2,
+        "alunoId": 1,
+        "urlFoto": "http://servidor.image2.jpg",
         "mes": 3,
-        "ano": 2023
-    },
+        "ano": 2023   
+    }
+],
+"presencas": [
     {
-        "idAluno": 1,
-        "urlFoto": "http://servidor/imagem3.jpg",
-        "mes": 4,
-        "ano": 2023
-    },
-    {
-        "idAluno": 1,
-        "urlFoto": "http://servidor/imagem4.jpg",
-        "mes": 5,
-        "ano": 2023
+        "id": 1,
+        "alunos": ["Thiago", "Thales"],
+        "dataDaPresenca": "01/02/2023",
+        "modalidade": "Natação"
     }
 ]
   

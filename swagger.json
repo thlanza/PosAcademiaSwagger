@@ -10,7 +10,7 @@
     },
     "servers": [
         {
-            "url": "https://backend-mockado-swagger.onrender.com",
+            "url": "http://localhost:5000",
             "description": "API de teste"
         }
     ],
@@ -294,7 +294,7 @@
                     {
                     "name": "id",
                     "in": "path",
-                    "description": "Nome do produto pelo id",
+                    "description": "Nome da modalidade pelo id",
                     "required": true
                     }
                 ],
@@ -321,7 +321,7 @@
                     {
                     "name": "id",
                     "in": "path",
-                    "description": "Nome do produto pelo id",
+                    "description": "Alterar modalidade pelo id",
                     "required": true
                     }
                 ],
@@ -383,6 +383,332 @@
                     }
                 }
             }
+        },
+        "/comprovantes": {
+            "get": {
+                "description": "Painel de Comprovantes",
+                "summary": "Esta rota recupera todos os comprovantes armazenados",
+                "tags": ["Comprovante"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Comprovante"
+                                    }                       
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Fazendo upload de um comprovante",
+                "summary": "Esta rota cria um comprovante e o armazena",
+                "tags": ["Comprovante"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Comprovante"                      
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Comprovante"
+                            },
+                            "examples": {
+                                "aluno": {
+                                    "value": {
+                                            "id": 3,
+                                            "alunoId": 1,
+                                            "urlFoto": "http://servidor.image3.jpg",
+                                            "mes": 4,
+                                            "ano": 2023   
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comprovantes/{id}": {
+            "get": {
+                "description": "Busca de um comprovante pelo id",
+                "summary": "Busca de um comprovante pelo id",
+                "tags": ["Comprovante"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Nome do comprovante pelo id",
+                    "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Comprovante"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Alterar um comprovante pelo id",
+                "summary": "Alterar um comprovante",
+                "tags": ["Comprovante"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Alterar comprovante pelo id",
+                    "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Comprovante"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {                            
+                                            "id": 1,
+                                            "alunoId": 1,
+                                            "urlFoto": "http://servidor.imageAlternativa.jpg",
+                                            "mes": 3,
+                                            "ano": 2023   
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Comprovante"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Deletar um comprovante pelo id",
+                "summary": "Deletar um comprovante pelo id",
+                "tags": ["Comprovante"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Deletar pelo id",
+                    "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/presencas": {
+            "get": {
+                "description": "Painel de Listas de Presenças",
+                "summary": "Esta rota recupera todas as listas de presença disponíveis",
+                "tags": ["Presenca"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Presenca"
+                                    }                       
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Criando uma lista de presença",
+                "summary": "Esta rota cria uma lista de presença para uma determinada data e modalidade.",
+                "tags": ["Presenca"],
+                "security": [{ "bearerAuth": [] }],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Presenca"                      
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Presenca"
+                            },
+                            "examples": {
+                                "aluno": {
+                                    "value": {
+                                        "id": 15,
+                                        "alunos": ["Jão", "Zé"],
+                                        "dataDaPresenca": "01/02/2023",
+                                        "modalidade": "Yoga 2"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/presencas/{id}": {
+            "get": {
+                "description": "Busca de uma lista de presença pelo id",
+                "summary": "Busca de uma lista de presença pelo id",
+                "tags": ["Presenca"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Nome da lista de presença pelo id",
+                    "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Presenca"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Alterar uma lista de presença pelo id",
+                "summary": "Alterar uma lista de prsença",
+                "tags": ["Comprovante"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Alterar lista de presença pelo id",
+                    "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Presenca"
+                            },
+                            "examples": {
+                                "product": {
+                                    "value": {                            
+                                        "id": 1,
+                                        "alunos": ["Thiago", "Thales", "Verônica"],
+                                        "dataDaPresenca": "01/02/2023",
+                                        "modalidade": "Natação"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Presenca"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Deletar uma lista de presença pelo id",
+                "summary": "Deletar uma lista de presença pelo id",
+                "tags": ["Presenca"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Deletar pelo id",
+                    "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
 
@@ -423,6 +749,26 @@
                     },
                     "ano": {
                         "type": "string"
+                    }
+                }
+            },
+            "Presenca": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "alunos": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "dataDaPresenca": {
+                        "type": "string"
+                    },
+                    "modalidade": {
+                        "type": "string"   
                     }
                 }
             },
