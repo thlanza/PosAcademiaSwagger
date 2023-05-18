@@ -10,7 +10,7 @@
     },
     "servers": [
         {
-            "url": "https://backend-mockado-swagger.onrender.com/",
+            "url": "http://localhost:5000",
             "description": "Servidor da API Mockada para o Swagger."
         }
     ],
@@ -115,8 +115,13 @@
                     "name": "id",
                     "in": "path",
                     "description": "Id do aluno",
-                    "required": true
+                    "required": true,
+                    "examples": {
+                        "deletado": {
+                            "value": 2
+                        }
                     }
+                }
                 ],
                 "responses": {
                     "200": {
@@ -192,7 +197,12 @@
                     "name": "id",
                     "in": "path",
                     "description": "Id do aluno",
-                    "required": true
+                    "required": true,
+                    "examples": {
+                        "deletado": {
+                            "value": 2
+                        }
+                    }
                     }
                 ],
                 "responses": {
@@ -667,8 +677,8 @@
             },
             "put": {
                 "description": "Alterar uma lista de presença pelo id",
-                "summary": "Alterar uma lista de prsença",
-                "tags": ["Comprovante"],
+                "summary": "Alterar uma lista de presença",
+                "tags": ["Presenca"],
                 "security": [{ "bearerAuth": [] }],
                 "parameters": [
                     {
@@ -817,6 +827,14 @@
                         "type": "string"
                     },
                     "fotoDePerfil": {
+                        "type": "string"
+                    }
+                }   
+            },
+            "DeletarAdmin": {
+                "type": "object",
+                "properties": {
+                    "id": {
                         "type": "string"
                     }
                 }   

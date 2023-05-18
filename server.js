@@ -108,6 +108,7 @@ server.post('/admin/auth/login', (req, res) => {
 
 // Deletar admin
 server.delete('/admin/auth/:id', (req, res) => {
+  try {
   fs.readFile("admin.json", (err, data) => {  
       if (err) {
         const status = 401
@@ -127,10 +128,10 @@ server.delete('/admin/auth/:id', (req, res) => {
       function removeObjectoComId(arr, id) {
         return arr.filter((obj) => obj.id != id);
       }
-      let alunos = data.alunos;
-      let newAlunos = removeObjectoComId(alunos, id);
+      let admin = data.admin;
+      let newAlunos = removeObjectoComId(admin, id);
   
-      data.alunos = newAlunos;
+      data.admin = newAlunos;
     
       //Salvar no json
       var writeData = fs.writeFile("admin.json", JSON.stringify(data), (err, result) => {  // WRITE
@@ -143,6 +144,9 @@ server.delete('/admin/auth/:id', (req, res) => {
           }
       });
     });
+  } catch(err) {
+    console.log(err);
+  }
     return res.status(200).json({});
   });
 
@@ -192,6 +196,7 @@ server.post('/aluno/auth/registrar', (req, res) => {
 
 // Deletar aluno
 server.delete('/aluno/auth/admin/:id', (req, res) => {
+try {
 fs.readFile("alunos.json", (err, data) => {  
     if (err) {
       const status = 401
@@ -206,6 +211,7 @@ fs.readFile("alunos.json", (err, data) => {
 
     // Pegar o id do último aluno
     const { id } = req.params;
+
  
     //Filtrar o array para tirar o elemento
     function removeObjectoComId(arr, id) {
@@ -227,6 +233,9 @@ fs.readFile("alunos.json", (err, data) => {
         }
     });
   });
+  } catch(err) {
+    console.log(err);
+  }
   return res.status(200).json({});
 });
 
