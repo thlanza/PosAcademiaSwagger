@@ -106,6 +106,46 @@ server.post('/admin/auth/login', (req, res) => {
   res.status(200).json({access_token})
 });
 
+// Deletar admin
+server.delete('/admin/auth/:id', (req, res) => {
+  fs.readFile("admin.json", (err, data) => {  
+      if (err) {
+        const status = 401
+        const message = err
+        console.log(err);
+        res.status(status).json({status, message})
+        return
+      };
+  
+      // Pegar os alunos atuais
+      var data = JSON.parse(data.toString());
+  
+      // Pegar o id do último aluno
+      const { id } = req.params;
+   
+      //Filtrar o array para tirar o elemento
+      function removeObjectoComId(arr, id) {
+        return arr.filter((obj) => obj.id != id);
+      }
+      let alunos = data.alunos;
+      let newAlunos = removeObjectoComId(alunos, id);
+  
+      data.alunos = newAlunos;
+    
+      //Salvar no json
+      var writeData = fs.writeFile("admin.json", JSON.stringify(data), (err, result) => {  // WRITE
+          if (err) {
+            const status = 401
+            const message = err
+            console.log(err);
+            res.status(status).json({status, message})
+            return
+          }
+      });
+    });
+    return res.status(200).json({});
+  });
+
 // Matricular aluno
 server.post('/aluno/auth/registrar', (req, res) => {
     console.log("Endpoint de registro chamado; corpo da requisição:");

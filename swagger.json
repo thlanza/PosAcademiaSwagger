@@ -104,6 +104,34 @@
                 }
             }
         },
+        "/admin/auth/{id}": {
+            "delete": {
+                "summary": "Deletar admin",
+                "description": "Essa rota será responsável por deletar o admin do banco de dados",
+                "tags": ["Admin"],
+                "security": [{ "bearerAuth": [] }],
+                "parameters": [
+                    {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id do aluno",
+                    "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/aluno/auth/registrar": {
             "post": {
                 "summary": "Matrícula de aluno",
