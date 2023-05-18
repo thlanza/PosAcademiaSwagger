@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "API da Academia Lanza",
-        "description": "Essa API tem como objetivo possibilitar o funcionamento do site Academia Lanza, tanto no seu módulo Aluno como no seu módulo Administrador.",
+        "description": "Essa API tem como objetivo possibilitar observar o funcionamento do site Academia Lanza, tanto no seu módulo Aluno como no seu módulo Administrador.",
         "contact": {
             "email": "thlanza@hotmail.com"
         },
@@ -10,8 +10,8 @@
     },
     "servers": [
         {
-            "url": "http://localhost:5000",
-            "description": "API de teste"
+            "url": "https://backend-mockado-swagger.onrender.com/",
+            "description": "Servidor da API Mockada para o Swagger."
         }
     ],
     "paths": {
